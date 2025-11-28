@@ -1,2 +1,2 @@
-# descriptive-programming
+# Descriptive Programming
 Descriptive programming
