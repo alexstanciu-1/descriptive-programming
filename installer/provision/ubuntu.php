@@ -5,6 +5,8 @@
 
 echo "provision/ubuntu\n";
 
-shell_exec("apt update");
-shell_exec("apt install php-fpm apache2 mariadb-server phpmyadmin");
+shell_exec("apt install -y");
+shell_exec("apt install -f");
+shell_exec("apt update -y");
+shell_exec("apt install -y php-fpm apache2 mariadb-server phpmyadmin");
 
