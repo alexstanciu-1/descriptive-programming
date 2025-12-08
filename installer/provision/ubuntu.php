@@ -5,8 +5,14 @@
 
 echo "provision/ubuntu\n";
 
-shell_exec("apt install -y");
-shell_exec("apt install -f");
-shell_exec("apt update -y");
-shell_exec("apt install -y php-fpm apache2 mariadb-server phpmyadmin");
+s_exec("apt install -y");
+s_exec("apt install -f");
+s_exec("apt update -y");
+s_exec("apt install -y php-fpm apache2 mariadb-server phpmyadmin");
 
+
+function s_exec(string $command)
+{
+	echo $command, "\n";
+	echo shell_exec($command), "\n";
+}
