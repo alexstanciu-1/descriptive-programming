@@ -5,10 +5,10 @@
 
 echo "provision/ubuntu\n";
 
-s_exec("apt install -y");
-s_exec("apt install -f");
-s_exec("apt update -y");
-s_exec("apt install -y php-fpm apache2 mariadb-server phpmyadmin");
+s_exec("DEBIAN_FRONTEND=noninteractive apt install -y");
+s_exec("DEBIAN_FRONTEND=noninteractive apt install -f");
+s_exec("DEBIAN_FRONTEND=noninteractive apt update -y");
+s_exec("DEBIAN_FRONTEND=noninteractive apt install -y php-fpm apache2 mariadb-server phpmyadmin");
 
 
 function s_exec(string $command)
