@@ -64,8 +64,8 @@ s_exec("service apache2 start");
 s_exec("service mariadb stop");
 s_exec("service mariadb start");
 
-s_exec("service php-fpm stop");
-s_exec("service php-fpm start");
+s_exec("service php".PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION."-fpm stop");
+s_exec("service php".PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION."-fpm start");
 
 # systemctl start cron
 # /etc/wsl.conf
