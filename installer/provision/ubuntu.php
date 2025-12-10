@@ -30,7 +30,9 @@ if (!preg_match("/(^|\\n)\\s*Listen\\s+8080\\b/uis", $ports_content)) {
 	$ports_content = implode("\n", $new_lines);
 	echo "\n=========================================================\n", 
 		$ports_content, "\n=========================================================\n";
-	file_put_contents('/etc/apache2/ports.conf', $ports_content);
+	if ($ports_content !== file_get_contents('/etc/apache2/ports.conf')) {
+		file_put_contents('/etc/apache2/ports.conf', $ports_content);
+	}
 }
 
 # /etc/apache2/sites-available/
@@ -41,7 +43,9 @@ if (!preg_match("/(^|\\n)\\s*Listen\\s+8080\\b/uis", $ports_content)) {
 	ob_start();
 	require __DIR__ . '/apache.conf';
 	$conf = ob_get_clean();
-	file_put_contents("/etc/apache2/sites-available/descriptive-app.conf", $conf);
+	if ($conf !== file_get_contents('/etc/apache2/sites-available/descriptive-app.conf')) {
+		file_put_contents("/etc/apache2/sites-available/descriptive-app.conf", $conf);
+	}
 	
 })($provision_for_user);
 
@@ -53,8 +57,9 @@ if (!preg_match("/(^|\\n)\\s*Listen\\s+8080\\b/uis", $ports_content)) {
 	ob_start();
 	require __DIR__ . '/php-fpm.conf';
 	$conf = ob_get_clean();
-	file_put_contents("/etc/php/".PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION."/fpm/pool.d/descriptive-app.conf", $conf);
-	
+	if ($conf !== file_get_contents("/etc/php/".PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION."/fpm/pool.d/descriptive-app.conf")) {
+		file_put_contents("/etc/php/".PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION."/fpm/pool.d/descriptive-app.conf", $conf);
+	}
 })($provision_for_user);
 
 s_exec("a2ensite descriptive-app.conf");
