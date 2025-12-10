@@ -14,6 +14,8 @@ s_exec("DEBIAN_FRONTEND=noninteractive apt install -f");
 s_exec("DEBIAN_FRONTEND=noninteractive apt update -y");
 s_exec("DEBIAN_FRONTEND=noninteractive apt install -y php-fpm apache2 mariadb-server phpmyadmin cron");
 
+s_exec("a2enmod alias rewrite");
+
 # nano /etc/apache2/ports.conf # Listen 8080
 $ports_content = file_get_contents('/etc/apache2/ports.conf');
 if (!preg_match("/(^|\\n)\\s*Listen\\s+8080\\b/uis", $ports_content)) {
@@ -30,6 +32,18 @@ if (!preg_match("/(^|\\n)\\s*Listen\\s+8080\\b/uis", $ports_content)) {
 		$ports_content, "\n=========================================================\n";
 	file_put_contents('/etc/apache2/ports.conf', $ports_content);
 }
+
+# /etc/apache2/sites-available/
+(function ($User) {
+	
+	# $User will be used in the require
+	ob_start();
+	require __DIR__ . '/apache.conf';
+	$conf = ob_get_clean();
+	file_put_contents("/etc/apache2/sites-available/descriptive-app.conf", $conf);
+	
+})($provision_for_user);
+
 
 s_exec("service apache2 stop");
 s_exec("service apache2 start");
