@@ -1,3 +1,5 @@
 <?php
 
-phpinfo();
+echo "System and services were installed.";
+
+# phpinfo();
