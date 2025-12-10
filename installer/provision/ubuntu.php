@@ -7,8 +7,7 @@ echo "provision/ubuntu\n";
 
 $provision_for_user = trim($argv[1] ?? '');
 
-var_dump('$provision_for_user: ' . $provision_for_user . "\n");
-echo "\n\n";
+var_dump("provision @user: {$provision_for_user}\n\n");
 
 s_exec("DEBIAN_FRONTEND=noninteractive apt install -y");
 s_exec("DEBIAN_FRONTEND=noninteractive apt install -f");
@@ -19,8 +18,8 @@ s_exec("DEBIAN_FRONTEND=noninteractive apt install -y php-fpm apache2 mariadb-se
 $ports_content = file_get_contents('/etc/apache2/ports.conf');
 if (!preg_match("/(^|\\n)\\s*Listen\\s+8080\\b/uis", $ports_content)) {
 	$ports_content = preg_replace("/(^|\\n)\\s*Listen\\s+80\\b/uis", "\n\nListen 80\nListen 8080\n", $ports_content);
-	echo "\n=========================================================\n", 
-		$ports_content, "\n=========================================================\n";
+	# echo "\n=========================================================\n", 
+	#	$ports_content, "\n=========================================================\n";
 	file_put_contents('/etc/apache2/ports.conf', $ports_content);
 }
 
