@@ -18,11 +18,19 @@ s_exec("DEBIAN_FRONTEND=noninteractive apt install -y php-fpm apache2 mariadb-se
 # nano /etc/apache2/ports.conf # Listen 8080
 $ports_content = file_get_contents('/etc/apache2/ports.conf');
 if (!preg_match("/(^|\\n)\\s*Listen\\s+8080\\b/uis", $ports_content)) {
-	$ports_content = preg_replace("/(^|\\n)\\s*Listen\\s+80\\b/uis", "\nListen 80\nListen 8080\n", $ports_content);
+	$ports_content = preg_replace("/(^|\\n)\\s*Listen\\s+80\\b/uis", "\n\nListen 80\nListen 8080\n", $ports_content);
 	echo "\n=========================================================\n", 
 		$ports_content, "\n=========================================================\n";
 	
 }
+
+s_exec("service apache2 stop");
+s_exec("service apache2 start");
+s_exec("service mariadb stop");
+s_exec("service mariadb start");
+
+s_exec("service php-fpm stop");
+s_exec("service php-fpm start");
 
 # systemctl start cron
 # /etc/wsl.conf
