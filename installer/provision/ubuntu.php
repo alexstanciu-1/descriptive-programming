@@ -17,9 +17,17 @@ s_exec("DEBIAN_FRONTEND=noninteractive apt install -y php-fpm apache2 mariadb-se
 # nano /etc/apache2/ports.conf # Listen 8080
 $ports_content = file_get_contents('/etc/apache2/ports.conf');
 if (!preg_match("/(^|\\n)\\s*Listen\\s+8080\\b/uis", $ports_content)) {
-	$ports_content = preg_replace("/(^|\\n)\\s*Listen\\s+80\\b/uis", "\n\nListen 80\nListen 8080\n", $ports_content);
-	# echo "\n=========================================================\n", 
-	#	$ports_content, "\n=========================================================\n";
+	$ports_lines = explode("\n", $ports_content);
+	$new_lines = [];
+	foreach ($ports_lines as $line) {
+		$new_lines[] = $line;
+		if (preg_match("/\\s*Listen\\s+80\\b/uis", $line)) {
+			$new_lines[] = "Listen 8080";
+		}
+	}
+	$ports_content = implode("\n", $new_lines);
+	echo "\n=========================================================\n", 
+		$ports_content, "\n=========================================================\n";
 	file_put_contents('/etc/apache2/ports.conf', $ports_content);
 }
 
