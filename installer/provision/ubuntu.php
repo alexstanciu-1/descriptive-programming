@@ -36,6 +36,7 @@ if (!preg_match("/(^|\\n)\\s*Listen\\s+8080\\b/uis", $ports_content)) {
 # /etc/apache2/sites-available/
 (function ($User) {
 	
+	$FPM_Pool = 'descriptive-app';
 	# $User will be used in the require
 	ob_start();
 	require __DIR__ . '/apache.conf';
@@ -44,6 +45,19 @@ if (!preg_match("/(^|\\n)\\s*Listen\\s+8080\\b/uis", $ports_content)) {
 	
 })($provision_for_user);
 
+# /etc/apache2/sites-available/
+(function ($User) {
+
+	$FPM_Pool = 'descriptive-app';
+	# $User will be used in the require
+	ob_start();
+	require __DIR__ . '/php-fpm.conf';
+	$conf = ob_get_clean();
+	file_put_contents("/etc/php/".PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION."/fpm/pool.d/descriptive-app.conf", $conf);
+	
+})($provision_for_user);
+
+s_exec("a2ensite descriptive-app.conf");
 
 s_exec("service apache2 stop");
 s_exec("service apache2 start");
