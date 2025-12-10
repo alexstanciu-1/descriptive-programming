@@ -12,9 +12,9 @@ var_dump("provision @user: {$provision_for_user}\n\n");
 s_exec("DEBIAN_FRONTEND=noninteractive apt install -y");
 s_exec("DEBIAN_FRONTEND=noninteractive apt install -f");
 s_exec("DEBIAN_FRONTEND=noninteractive apt update -y");
-s_exec("DEBIAN_FRONTEND=noninteractive apt install -y php-fpm apache2 mariadb-server phpmyadmin cron");
+s_exec("DEBIAN_FRONTEND=noninteractive apt install -y php-fpm apache2 apache2-suexec-custom mariadb-server phpmyadmin cron");
 
-s_exec("a2enmod alias rewrite");
+s_exec("a2enmod alias rewrite suexec");
 
 # nano /etc/apache2/ports.conf # Listen 8080
 $ports_content = file_get_contents('/etc/apache2/ports.conf');
