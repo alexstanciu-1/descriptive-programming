@@ -7,7 +7,21 @@ echo "provision/ubuntu\n";
 
 $provision_for_user = trim($argv[1] ?? '');
 
+if (!$provision_for_user) {
+	echo "MISSING USER\n\n";
+	exit;
+}
+if (!is_dir("/home/{$provision_for_user}")) {
+	echo "MISSING USER's HOME DIR\n\n";
+	exit;
+}
+
 var_dump("provision @user: {$provision_for_user}\n\n");
+
+if (!is_dir("/home/{$provision_for_user}/logs")) {
+	mkdir("/home/{$provision_for_user}/logs");
+	s_exec("chown {$provision_for_user}:{$provision_for_user} /home/{$provision_for_user}/logs");
+}
 
 s_exec("DEBIAN_FRONTEND=noninteractive apt install -y");
 s_exec("DEBIAN_FRONTEND=noninteractive apt install -f");
