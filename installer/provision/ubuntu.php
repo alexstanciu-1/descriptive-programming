@@ -23,6 +23,8 @@ if (!is_dir("/home/{$provision_for_user}/logs")) {
 	s_exec("chown {$provision_for_user}:{$provision_for_user} /home/{$provision_for_user}/logs");
 }
 
+s_exec("chmod +x /home/{$provision_for_user}");
+
 s_exec("DEBIAN_FRONTEND=noninteractive apt install -y");
 s_exec("DEBIAN_FRONTEND=noninteractive apt install -f");
 s_exec("DEBIAN_FRONTEND=noninteractive apt update -y");
