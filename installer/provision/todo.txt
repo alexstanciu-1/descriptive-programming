@@ -1,4 +1,11 @@
 ON WSL 
 	- the user must not be changed on install
 	- if WSL was not installed it requires reboot
-	- 
+
+WINDOWS:
+	$ git pull
+		fatal: detected dubious ownership in repository at 'D:/Work/descriptive-programming'
+		'D:/Work/descriptive-programming' is on a file system that does not record ownership
+		To add an exception for this directory, call:
+				git config --global --add safe.directory D:/Work/descriptive-programming
+
