@@ -34,8 +34,9 @@ s_exec("DEBIAN_FRONTEND=noninteractive apt install -f");
 s_exec("DEBIAN_FRONTEND=noninteractive apt update -y");
 s_exec("DEBIAN_FRONTEND=noninteractive apt install -y php-fpm apache2 apache2-suexec-custom mariadb-server phpmyadmin cron");
 
-s_exec("a2dismod mpm_prefork php".PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION);
-s_exec("a2enmod mpm_event proxy proxy_fcgi setenvif suexec rewrite alias http2");
+# s_exec("a2dismod mpm_prefork php".PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION);
+# s_exec("a2enmod mpm_event"); # this is not working ok ! not needed on dev boxes !
+s_exec("a2enmod proxy proxy_fcgi setenvif suexec rewrite alias http2");
 
 # nano /etc/apache2/ports.conf # Listen 8080
 $ports_content = file_get_contents('/etc/apache2/ports.conf');

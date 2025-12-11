@@ -7,7 +7,7 @@ Descriptive programming
 * In the shell run `git clone https://github.com/alexstanciu-1/descriptive-programming.git ./` \
   If you want to put it in a sub-folder replace `./` with the name of the folder you want
 * From the shell run:\
-    Windows/WSL: `./installer/windows_wsl/install.cmd`\
+    Windows/WSL: `wsl --install -d Ubuntu` then reboot, then run `./installer/windows_wsl/install.cmd`\
   Note: make sure the path is correct depending on your current folder in the shell\
   Note: if you copy/paste there may be bad chars inserted. clean them before you run it\
   Note: Windows/WSL. Keep the linux user as your user !\
