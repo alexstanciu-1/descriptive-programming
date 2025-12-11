@@ -19,7 +19,7 @@ wsl -d Ubuntu -- git clone https://github.com/alexstanciu-1/descriptive-programm
 wsl -d Ubuntu -- git -C ~/descriptive-app pull
 
 :: This is the main provisioner. We need root access.
-wsl -u root -d Ubuntu -- php /home/%username%/descriptive-app/installer/provision/ubuntu.php %username%
+wsl -u root -d Ubuntu -- php /home/%username%/descriptive-app/installer/provision/ubuntu.php %username% wsl
 
 start http://localhost:8080
 

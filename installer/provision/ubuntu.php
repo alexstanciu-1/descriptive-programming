@@ -6,6 +6,10 @@
 echo "provision/ubuntu\n";
 
 $provision_for_user = trim($argv[1] ?? '');
+$runned_by = trim($argv[2] ?? '');
+if ($runned_by === 'wsl') {
+	$provision_for_user = strtolower($provision_for_user);
+}
 
 if (!$provision_for_user) {
 	echo "MISSING USER\n\n";
