@@ -5,9 +5,6 @@
 
 echo "provision/ubuntu\n";
 
-var_dump($argv);
-exit;
-
 $provision_for_user = trim($argv[1] ?? '');
 $runned_by = trim($argv[2] ?? '');
 if ($runned_by === 'wsl') {
