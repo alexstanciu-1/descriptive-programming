@@ -8,8 +8,8 @@ Descriptive programming
   If you want to put it in a sub-folder replace `./` with the name of the folder you want
 * From the shell run:\
     Windows/WSL: `./installer/windows_wsl/install.cmd`\
-  Note: make sure the path is correct depending on your current folder in the shell
-  Note: if you copy/paste there may be bad chars inserted. clean them before you run it
+  Note: make sure the path is correct depending on your current folder in the shell\
+  Note: if you copy/paste there may be bad chars inserted. clean them before you run it\
   Note: Windows/WSL keep the linux user as your user !\
 		The windows installer will remove uppercase characters.\
 		Please re-type your Windows user all lowercase when prompted by the WSL installer.
