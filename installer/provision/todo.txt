@@ -1,0 +1,4 @@
+ON WSL 
+	- the user must not be changed on install
+	- if WSL was not installed it requires reboot
+	- 
