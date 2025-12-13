@@ -3,6 +3,14 @@
 # install crontab start crontab
 # start services when ubuntu starts !!!!
 
+/**
+ *	@TODO
+ *		should install in /usr/share
+ *		there should be a command line
+ * 
+ */
+
+
 echo "provision/ubuntu\n";
 
 $provision_for_user = trim($argv[1] ?? '');

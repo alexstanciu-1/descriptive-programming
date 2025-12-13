@@ -1,5 +1,5 @@
 <?php
 
-echo "System and services were installed.";
+# echo "System and services were installed.";
 
-# phpinfo();
+require __DIR__.'/main.tpl';
