@@ -16,7 +16,7 @@ git push
 "%ProgramFiles%\Git\cmd\git" push
 :: END just for testing
 
-:: SET mypath="%~dp0"
+SET mypath="%~dp0"
 :: echo %mypath%
 
 :: make sure windows subsystem for linux is installed !!!
