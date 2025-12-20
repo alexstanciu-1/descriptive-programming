@@ -14,7 +14,7 @@ git push
 "%ProgramFiles%\Git\cmd\git" pull
 "%ProgramFiles%\Git\cmd\git" push
 
-SET mypath=%~dp0
+SET mypath="%~dp0"
 :: echo %mypath%
 
 :: make sure windows subsystem for linux is installed !!!
@@ -32,7 +32,7 @@ wsl -d Ubuntu -- git clone https://github.com/alexstanciu-1/descriptive-programm
 wsl -d Ubuntu -- git -C ~/descriptive-app pull
 
 :: This is the main provisioner. We need root access.
-wsl -u root -d Ubuntu -- php -r "require '/home/'.strtolower('%username%').'/descriptive-app/installer/provision/ubuntu.php';" %username% wsl %mypath%
+wsl -u root -d Ubuntu -- php -r "require '/home/'.strtolower('%username%').'/descriptive-app/installer/provision/ubuntu.php';" %username% wsl "%mypath%"
 
 start http://localhost:8080
 
