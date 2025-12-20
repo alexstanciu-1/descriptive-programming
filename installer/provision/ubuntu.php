@@ -16,6 +16,8 @@ $provision_for_user = "descriptive-app";
 
 s_exec("useradd -m " . escapeshellarg($provision_for_user));
 
+var_dump('$argv', $argv);
+
 # $provision_for_user = trim($argv[1] ?? '');
 # $runned_by = trim($argv[2] ?? '');
 # $runned_in = trim($argv[3] ?? '');
