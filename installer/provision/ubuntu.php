@@ -13,7 +13,7 @@
 
 echo "provision/ubuntu\n";
 
-var_dump('$argv', $argv, 'aqqqq', aqqqq);
+var_dump('$argv', $argv);
 
 $provision_for_user = trim($argv[1] ?? '');
 $runned_by = trim($argv[2] ?? '');
