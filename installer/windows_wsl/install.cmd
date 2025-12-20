@@ -4,6 +4,7 @@
 :: remove current ubuntu
 :: wslconfig /u Ubuntu
 
+:: just for testing
 cd /D "%~dp0"
 
 git commit -am update
@@ -13,9 +14,10 @@ git push
 "%ProgramFiles%\Git\cmd\git" commit -am update
 "%ProgramFiles%\Git\cmd\git" pull
 "%ProgramFiles%\Git\cmd\git" push
+:: END just for testing
 
-SET mypath="%~dp0"
-echo %mypath%
+:: SET mypath="%~dp0"
+:: echo %mypath%
 
 :: make sure windows subsystem for linux is installed !!!
 wsl --install -d Ubuntu
@@ -26,13 +28,14 @@ wsl --install -d Ubuntu
 wsl -u root -d Ubuntu -- apt update
 wsl -u root -d Ubuntu -- apt install -y git php
 
-wsl -d Ubuntu -- git clone https://github.com/alexstanciu-1/descriptive-programming.git ~/descriptive-app
+wsl -u root -d Ubuntu -- git clone https://github.com/alexstanciu-1/descriptive-programming.git /usr/share/descriptive-app
 
 :: make sure we update, in case it's not the first run
-wsl -d Ubuntu -- git -C ~/descriptive-app pull
+wsl -u root -d Ubuntu -- git -C /usr/share/descriptive-app pull
 
 :: This is the main provisioner. We need root access.
-wsl -u root -d Ubuntu -- php -r "require '/home/'.strtolower('%username%').'/descriptive-app/installer/provision/ubuntu.php';" %username% wsl '%mypath%'
+:: wsl -u root -d Ubuntu -- php -r "require '/home/'.strtolower('%username%').'/descriptive-app/installer/provision/ubuntu.php';" %username% wsl '%mypath%'
+wsl -u root -d Ubuntu -- php '/usr/share/descriptive-app/installer/provision/ubuntu.php'
 
 start http://localhost:8080
 

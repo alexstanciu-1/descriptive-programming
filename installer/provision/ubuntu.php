@@ -13,17 +13,19 @@
 
 echo "provision/ubuntu\n";
 
-var_dump('$argv', $argv);
+$provision_for_user = "descriptive-app";
 
-$provision_for_user = trim($argv[1] ?? '');
-$runned_by = trim($argv[2] ?? '');
-$runned_in = trim($argv[3] ?? '');
-var_dump('$runned_in', $runned_in);
-exit;
+s_exec("useradd -m " . escapeshellarg($provision_for_user));
 
-if ($runned_by === 'wsl') {
+# $provision_for_user = trim($argv[1] ?? '');
+# $runned_by = trim($argv[2] ?? '');
+# $runned_in = trim($argv[3] ?? '');
+# var_dump('$runned_in', $runned_in);
+# exit;
+
+/*if ($runned_by === 'wsl') {
 	$provision_for_user = strtolower($provision_for_user);
-}
+}*/
 
 if (!$provision_for_user) {
 	echo "MISSING USER\n\n";
