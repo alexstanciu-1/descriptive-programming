@@ -35,7 +35,7 @@ wsl -u descriptive-app -d Ubuntu -- git -C /home/descriptive-app/descriptive-app
 
 :: This is the main provisioner. We need root access.
 :: wsl -u root -d Ubuntu -- php -r "require '/home/'.strtolower('%username%').'/descriptive-app/installer/provision/ubuntu.php';" %username% wsl '%mypath%'
-wsl -u root -d Ubuntu -- php '/home/descriptive-app/descriptive-app/installer/provision/ubuntu.php' '%mypath%'
+wsl -u root -d Ubuntu -- php '/home/descriptive-app/descriptive-app/installer/provision/ubuntu.php' 'descriptive-app' wsl '%mypath%'
 
 start http://localhost:8080
 
