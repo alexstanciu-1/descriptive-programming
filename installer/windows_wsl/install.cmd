@@ -16,6 +16,7 @@ git push
 
 SET mypath="%~dp0"
 echo %mypath%
+pause
 exit
 
 :: make sure windows subsystem for linux is installed !!!
