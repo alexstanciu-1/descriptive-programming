@@ -15,6 +15,10 @@ echo "provision/ubuntu\n";
 
 $provision_for_user = trim($argv[1] ?? '');
 $runned_by = trim($argv[2] ?? '');
+$runned_in = trim($argv[3] ?? '');
+var_dump('$runned_in', $runned_in);
+exit;
+
 if ($runned_by === 'wsl') {
 	$provision_for_user = strtolower($provision_for_user);
 }
