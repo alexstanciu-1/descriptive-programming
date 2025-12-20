@@ -5,7 +5,6 @@
 
 /**
  *	@TODO
- *		should install in /usr/share
  *		there should be a command line
  * 
  */
