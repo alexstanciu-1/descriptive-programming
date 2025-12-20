@@ -28,10 +28,10 @@ wsl --install -d Ubuntu
 wsl -u root -d Ubuntu -- apt update
 wsl -u root -d Ubuntu -- apt install -y git php
 
-wsl -u root -d Ubuntu -- git clone https://github.com/alexstanciu-1/descriptive-programming.git /home/descriptive-app/descriptive-app
+wsl -u descriptive-app -d Ubuntu -- git clone https://github.com/alexstanciu-1/descriptive-programming.git /home/descriptive-app/descriptive-app
 
 :: make sure we update, in case it's not the first run
-wsl -u root -d Ubuntu -- git -C /usr/share/descriptive-app pull
+wsl -u descriptive-app -d Ubuntu -- git -C /usr/share/descriptive-app pull
 
 :: This is the main provisioner. We need root access.
 :: wsl -u root -d Ubuntu -- php -r "require '/home/'.strtolower('%username%').'/descriptive-app/installer/provision/ubuntu.php';" %username% wsl '%mypath%'
