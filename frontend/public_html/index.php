@@ -19,7 +19,13 @@ $cmd = "time find ".escapeshellarg($sync_path)." -type f -not -path \"*/.git/*\"
 
 var_dump($cmd);
 
-echo shell_exec($cmd);
+$out = shell_exec($cmd);
+
+echo $out;
+
+$files = preg_split("/\\n/uis", $out, -1, PREG_SPLIT_NO_EMPTY);
+
+var_dump('$files', $files);
 
 exit;
 # var_dump($sync_path, scandir($sync_path));
