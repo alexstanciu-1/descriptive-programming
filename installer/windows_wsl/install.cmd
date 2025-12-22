@@ -5,7 +5,7 @@
 :: wslconfig /u Ubuntu
 
 cd /D "%~dp0"
-start /B "" "%ProgramFiles%\Git\git-bash.exe" -c ./install.sh
-start 'http://localhost:8080'
+start /B /wait "" "%ProgramFiles%\Git\git-bash.exe" -c ./install.sh
+start /B /wait http://localhost:8080
 
 exit
