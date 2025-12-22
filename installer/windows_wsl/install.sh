@@ -33,4 +33,4 @@ wsl -u root -d Ubuntu -- git -C /usr/share/descriptive-app pull
 # wsl -u root -d Ubuntu -- php /usr/share/descriptive-app/installer/provision/ubuntu.php wsl "$username" "$currentpath"
 wsl -u root -d Ubuntu -- php /usr/share/descriptive-app/installer/provision/ubuntu.php wsl "descriptive-app" "$currentpath"
 
-start http://localhost:8080
+'start http://localhost:8080'
