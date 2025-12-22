@@ -48,7 +48,7 @@ else if ($arg_host_user === null) {
 	s_exec("useradd -m " . escapeshellarg($provision_for_user));
 	s_exec("sudo adduser " . escapeshellarg($provision_for_user) . " sudo");
 }
-else if ($arg_host_user && is_dir("/home/{$arg_host_user}")) {
+else if ($arg_host_user && (!is_dir("/home/{$arg_host_user}"))) {
 	echo "Invalid user dir for: {$arg_host_user}.";
 	exit;
 }
