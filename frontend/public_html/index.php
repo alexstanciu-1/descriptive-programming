@@ -8,6 +8,8 @@
 #					also 0.2 sec (wsl v1)
 #					also 8.2 sec !!! (wsl v2 !!!)
 
+var_dump($username = posix_getpwuid(posix_geteuid())['name'], $_ENV);
+
 $install_args = json_decode(file_get_contents("../../../descriptive-app.setup-conf.json"));
 $sync_path = trim($install_args->args[3], '"');
 $sync_path = preg_replace_callback("/^(\w+)\\:/uis", function ($m) { return strtolower($m[1]);}, $sync_path);
