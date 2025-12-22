@@ -15,7 +15,7 @@ $sync_path = "/mnt/".preg_replace("/(\\\\)/uis", "/", $sync_path);
 $sync_path = dirname(dirname($sync_path));
 $sync_path = rtrim($sync_path, "/")."/";
 
-$cmd = "time find ".escapeshellarg($sync_path)." -type f -not -path \"*/.git/*\" -not -path \"*/gens/*\"";
+$cmd = "time find ".escapeshellarg($sync_path)." -type f -not -path \"*/.git/*\" -not -path \"*/gens/*\" -mmin -30";
 
 var_dump($cmd);
 
