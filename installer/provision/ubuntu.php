@@ -109,6 +109,11 @@ if (!preg_match("/(^|\\n)\\s*Listen\\s+8080\\b/uis", $ports_content)) {
 	}
 }
 
+file_put_contents("/home/{$provision_for_user}/descriptive-app.setup-conf.json", json_encode([
+		'args' => $argv,
+		'provision_user' => $provision_for_user,
+	], JSON_PRETTY_PRINT | JSON_UNESCAPED_LINE_TERMINATORS | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+
 # /etc/apache2/sites-available/
 (function ($User) {
 	
