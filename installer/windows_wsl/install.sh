@@ -29,8 +29,6 @@ wsl -u root -d Ubuntu -- git clone 'https://github.com/alexstanciu-1/descriptive
 # make sure we update, in case it's not the first run
 wsl -u root -d Ubuntu -- git -C '/usr/share/descriptive-app' pull
 
-read -p "Press enter to continue"
-
 # This is the main provisioner. We need root access.
 # wsl -u root -d Ubuntu -- php '/usr/share/descriptive-app/installer/provision/ubuntu.php' wsl "$username" "$currentpath"
 wsl -u root -d Ubuntu -- php '/usr/share/descriptive-app/installer/provision/ubuntu.php' wsl "descriptive-app" "$currentpath"
