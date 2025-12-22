@@ -10,7 +10,7 @@
 
 $install_args = json_decode(file_get_contents("../../../descriptive-app.setup-conf.json"));
 
-var_dump($install_args);
+var_dump(dirname(dirname($install_args->args[3])));
 exit;
 
 require __DIR__.'/main.tpl';
