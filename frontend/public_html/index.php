@@ -7,7 +7,10 @@
 # this also works ... modif last 10 mins: time find ./ -type f -not -path "*/.git/*" -not -path "*/gens/*" -mmin -10
 #					also 0.2 sec (wsl v1)
 #					also 8.2 sec !!! (wsl v2 !!!)
-var_dump(realpath('../../../'), file_get_contents("../../../descriptive-app.setup-conf.json"));
+
+$install_args = json_decode(file_get_contents("../../../descriptive-app.setup-conf.json"));
+
+var_dump($install_args);
 exit;
 
 require __DIR__.'/main.tpl';
