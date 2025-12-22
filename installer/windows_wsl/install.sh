@@ -24,14 +24,18 @@ wsl -u root -d Ubuntu -- apt update
 wsl -u root -d Ubuntu -- apt install -y git php
 
 # get the repo or update it
-wsl -u root -d Ubuntu -- chown root:root '/usr/share/descriptive-app' -R
-wsl -u root -d Ubuntu -- git clone 'https://github.com/alexstanciu-1/descriptive-programming.git' '/usr/share/descriptive-app'
+wsl -u root -d Ubuntu -- chown root:root /usr/share/descriptive-app -R
+wsl -u root -d Ubuntu -- git clone https://github.com/alexstanciu-1/descriptive-programming.git /usr/share/descriptive-app
 # make sure we update, in case it's not the first run
-wsl -u root -d Ubuntu -- git -C '/usr/share/descriptive-app' pull
+wsl -u root -d Ubuntu -- git -C /usr/share/descriptive-app pull
+
+echo "AAAAAAAAAA";
 
 # This is the main provisioner. We need root access.
-# wsl -u root -d Ubuntu -- php '/usr/share/descriptive-app/installer/provision/ubuntu.php' wsl "$username" "$currentpath"
-wsl -u root -d Ubuntu -- php '/usr/share/descriptive-app/installer/provision/ubuntu.php' wsl "descriptive-app" "$currentpath"
+# wsl -u root -d Ubuntu -- php /usr/share/descriptive-app/installer/provision/ubuntu.php wsl "$username" "$currentpath"
+wsl -u root -d Ubuntu -- php /usr/share/descriptive-app/installer/provision/ubuntu.php wsl "descriptive-app" "$currentpath"
+
+echo "BBBBBBBBBBB";
 
 start http://localhost:8080
 
