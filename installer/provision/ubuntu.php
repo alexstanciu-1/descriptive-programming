@@ -20,7 +20,7 @@ PLAN:
  */
 
 
-echo "provision/ubuntu\n";
+echo "provision v0.2\n";
 
 $arg_vm_type = trim($argv[1] ?? '');
 $arg_host_user = trim($argv[2] ?? '');
