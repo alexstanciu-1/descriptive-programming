@@ -27,6 +27,10 @@ $files = preg_split("/\\n/uis", $out, -1, PREG_SPLIT_NO_EMPTY);
 
 var_dump('$files', $files);
 
+foreach ($files as $f) {
+	var_dump($f, filemtime($f), substr(file_get_contents($f), 0, 128));
+}
+
 exit;
 # var_dump($sync_path, scandir($sync_path));
 # exit;
