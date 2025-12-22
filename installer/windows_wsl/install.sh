@@ -28,7 +28,8 @@ wsl --install -d Ubuntu
 	wsl -u root -d Ubuntu -- git -C /usr/share/descriptive-app pull
 
 # This is the main provisioner. We need root access.
-wsl -u root -d Ubuntu -- php '/usr/share/descriptive-app/installer/provision/ubuntu.php' wsl "$username" "$currentpath"
+# wsl -u root -d Ubuntu -- php '/usr/share/descriptive-app/installer/provision/ubuntu.php' wsl "$username" "$currentpath"
+wsl -u root -d Ubuntu -- php '/usr/share/descriptive-app/installer/provision/ubuntu.php' wsl "descriptive-app" "$currentpath"
 
 start http://localhost:8080
 

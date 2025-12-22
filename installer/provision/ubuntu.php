@@ -22,31 +22,39 @@ PLAN:
 
 echo "provision/ubuntu\n";
 
-$provision_for_user = "descriptive-app";
-
-s_exec("useradd -m " . escapeshellarg($provision_for_user));
-# making descriptive-app a sudoer so it can run privisioning scripts and other stuff
-s_exec("sudo adduser " . escapeshellarg($provision_for_user) . " sudo");
-
 $arg_vm_type = trim($argv[1] ?? '');
 $arg_host_user = trim($argv[2] ?? '');
 $arg_host_path = trim($argv[3] ?? '');
 
-var_dump([
-	'$arg_vm_type' => $arg_vm_type,
-	'$arg_host_user' => $arg_host_user,
-	'$arg_host_path' => $arg_host_path,
-]);
+if ($arg_vm_type === 'wsl') {
+	$arg_host_user = strtolower($arg_host_user);
+}
+if (strlen($arg_host_user) === 0) {
+	$arg_host_user = null;
+}
 
-# $provision_for_user = trim($argv[1] ?? '');
-# $runned_by = trim($argv[2] ?? '');
-# $runned_in = trim($argv[3] ?? '');
-# var_dump('$runned_in', $runned_in);
-# exit;
+if (($arg_host_user !== null) && (!preg_match("/^[\\w\\_\\-\\d]+\$/uis", $arg_host_user))) {
+	echo "Invalid username: {$arg_host_user}.";
+	exit;
+}
 
-/*if ($runned_by === 'wsl') {
-	$provision_for_user = strtolower($provision_for_user);
-}*/
+if ($arg_host_user === 'root') {
+	echo "Not expected to be provisioned for `root`.";
+	exit;
+}
+else if ($arg_host_user === null) {
+	$provision_for_user = "descriptive-app";
+	# making descriptive-app a sudoer so it can run privisioning scripts and other stuff
+	s_exec("useradd -m " . escapeshellarg($provision_for_user));
+	s_exec("sudo adduser " . escapeshellarg($provision_for_user) . " sudo");
+}
+else if ($arg_host_user && is_dir("/home/{$arg_host_user}")) {
+	echo "Invalid user dir for: {$arg_host_user}.";
+	exit;
+}
+else {
+	$provision_for_user = $arg_host_user;
+}
 
 if (!$provision_for_user) {
 	echo "MISSING USER\n\n";
@@ -63,6 +71,10 @@ if (!is_dir("/home/{$provision_for_user}/logs")) {
 	mkdir("/home/{$provision_for_user}/logs");
 	s_exec("chown {$provision_for_user}:{$provision_for_user} /home/{$provision_for_user}/logs");
 }
+
+s_exec("git clone https://github.com/alexstanciu-1/descriptive-programming.git /home/{$provision_for_user}/descriptive-app");
+# make sure we update, in case it's not the first run
+s_exec("git -C /home/{$provision_for_user}/descriptive-app pull");
 
 s_exec("chmod +x /home/{$provision_for_user}");
 
