@@ -28,8 +28,6 @@ s_exec("useradd -m " . escapeshellarg($provision_for_user));
 # making descriptive-app a sudoer so it can run privisioning scripts and other stuff
 s_exec("sudo adduser " . escapeshellarg($provision_for_user) . " sudo");
 
-var_dump('$argv', $argv);
-
 $arg_vm_type = trim($argv[1] ?? '');
 $arg_host_user = trim($argv[2] ?? '');
 $arg_host_path = trim($argv[3] ?? '');
@@ -39,6 +37,8 @@ var_dump([
 	'$arg_host_user' => $arg_host_user,
 	'$arg_host_path' => $arg_host_path,
 ]);
+
+exit;
 
 # $provision_for_user = trim($argv[1] ?? '');
 # $runned_by = trim($argv[2] ?? '');
