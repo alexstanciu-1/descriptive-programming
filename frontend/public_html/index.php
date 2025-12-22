@@ -11,6 +11,8 @@
 $install_args = json_decode(file_get_contents("../../../descriptive-app.setup-conf.json"));
 $sync_path = "/mnt" . dirname(dirname($install_args->args[3]));
 
+var_dump('$sync_path', $sync_path);
+
 echo exec("find ".escapeshellarg($sync_path)." -type f -not -path \"*/.git/*\" -not -path \"*/gens/*\"");
 
 # var_dump($sync_path, scandir($sync_path));
