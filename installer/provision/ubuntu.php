@@ -26,8 +26,10 @@ $arg_vm_type = trim($argv[1] ?? '');
 $arg_host_user = trim($argv[2] ?? '');
 $arg_host_path = trim($argv[3] ?? '');
 
-if ($arg_vm_type === 'wsl') {
-	$arg_host_user = strtolower($arg_host_user);
+if ($arg_vm_type === 'wsl') {	
+	# %username%
+	$arg_host_user = strtolower(trim($arg_host_user, '"'));
+	# @TODO the user can also be the one with uppercase stripped !
 }
 if (strlen($arg_host_user) === 0) {
 	$arg_host_user = null;
