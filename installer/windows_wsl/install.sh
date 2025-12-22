@@ -1,5 +1,8 @@
 #!/bin/bash
 
+start 'http://localhost:8080'
+start http://localhost:8080
+
 export MSYS_NO_PATHCONV=1
 
 username="$(whoami)"
