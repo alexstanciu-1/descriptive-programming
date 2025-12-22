@@ -34,6 +34,3 @@ wsl -u root -d Ubuntu -- git -C /usr/share/descriptive-app pull
 wsl -u root -d Ubuntu -- php /usr/share/descriptive-app/installer/provision/ubuntu.php wsl "descriptive-app" "$currentpath"
 
 start http://localhost:8080
-
-read -p "Press enter to continue"
-exit
