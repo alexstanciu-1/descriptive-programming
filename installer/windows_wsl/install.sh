@@ -8,7 +8,13 @@ pwd
 	git push
 # end
 
+echo "$USER";
+echo "dirname : [$(dirname "$0")]"
+echo "pwd     : [$(pwd)]"
+
 wsl --install -d Ubuntu
+
+# '%username%' '%mypath%'
 
 # run a update if needed
 # wsl --update
@@ -24,7 +30,7 @@ wsl -u descriptive-app -d Ubuntu -- git -C /usr/share/descriptive-app pull
 
 # This is the main provisioner. We need root access.
 # wsl -u root -d Ubuntu -- php -r "require '/home/'.strtolower('%username%').'/descriptive-app/installer/provision/ubuntu.php';" %username% wsl '%mypath%'
-wsl -u root -d Ubuntu -- php '/usr/share/descriptive-app/installer/provision/ubuntu.php' '%username%' '%mypath%' wsl
+wsl -u root -d Ubuntu -- php '/usr/share/descriptive-app/installer/provision/ubuntu.php' wsl
 
 start http://localhost:8080
 
