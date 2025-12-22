@@ -38,8 +38,6 @@ var_dump([
 	'$arg_host_path' => $arg_host_path,
 ]);
 
-exit;
-
 # $provision_for_user = trim($argv[1] ?? '');
 # $runned_by = trim($argv[2] ?? '');
 # $runned_in = trim($argv[3] ?? '');
