@@ -8,34 +8,44 @@
 #					also 0.2 sec (wsl v1)
 #					also 8.2 sec !!! (wsl v2 !!!)
 
-var_dump($username = posix_getpwuid(posix_geteuid())['name'], $_ENV);
+# var_dump($username = posix_getpwuid(posix_geteuid())['name'], $_ENV);
 
-$install_args = json_decode(file_get_contents("../../../descriptive-app.setup-conf.json"));
-$sync_path = trim($install_args->args[3], '"');
-$sync_path = preg_replace_callback("/^(\w+)\\:/uis", function ($m) { return strtolower($m[1]);}, $sync_path);
-$sync_path = "/mnt/".preg_replace("/(\\\\)/uis", "/", $sync_path);
-$sync_path = dirname(dirname($sync_path));
-$sync_path = rtrim($sync_path, "/")."/";
+# SYNC CODE HERE (if needed!)
+if (true)
+{
+	$install_args = json_decode(file_get_contents("../../../descriptive-app.setup-conf.json"));
 
-$cmd = "time find ".escapeshellarg($sync_path)." -type f -not -path \"*/.git/*\" -not -path \"*/gens/*\" -mmin -30";
+	if ($install_args->args[1] === 'wsl') {
+		# map it on wsl
+		$sync_path = trim($install_args->args[3], '"');
+		$sync_path = preg_replace_callback("/^(\w+)\\:/uis", function ($m) { return strtolower($m[1]);}, $sync_path);
+		$sync_path = "/mnt/".preg_replace("/(\\\\)/uis", "/", $sync_path);
+	}
+	else {
+		echo "ONLY Windows WSL VM implemented atm.";
+		exit;
+	}
 
-var_dump($cmd);
+	$sync_path = dirname(dirname($sync_path));
+	$sync_path = rtrim($sync_path, "/")."/";
 
-$out = shell_exec($cmd);
+	$local_path = realpath("../..");
 
-echo $out;
+	$cmd = "find ".escapeshellarg($sync_path)." -type f -not -path \"*/.git/*\" -not -path \"*/gens/*\" -mmin -30";
 
-$files = preg_split("/\\n/uis", $out, -1, PREG_SPLIT_NO_EMPTY);
+	$out = shell_exec($cmd);
 
-var_dump('$files', $files);
+	echo $out;
 
-foreach ($files as $f) {
-	var_dump($f, filemtime($f), substr(file_get_contents($f), 0, 128));
+	$files = preg_split("/\\n/uis", $out, -1, PREG_SPLIT_NO_EMPTY);
+
+	var_dump('$files', $files);
+
+	foreach ($files as $f) {
+		var_dump($f, filemtime($f), substr(file_get_contents($f), 0, 128));
+	}
+	exit;
 }
-
-exit;
-# var_dump($sync_path, scandir($sync_path));
-# exit;
 
 require __DIR__.'/main.tpl';
 
