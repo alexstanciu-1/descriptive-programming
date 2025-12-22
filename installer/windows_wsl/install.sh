@@ -36,3 +36,4 @@ wsl -u root -d Ubuntu -- php /usr/share/descriptive-app/installer/provision/ubun
 start http://localhost:8080
 
 read -p "Press enter to continue"
+exit
