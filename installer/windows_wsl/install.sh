@@ -8,7 +8,7 @@ pwd
 	git push
 # end
 
-echo "$USER";
+whoami
 echo "dirname : [$(dirname "$0")]"
 echo "pwd     : [$(pwd)]"
 
