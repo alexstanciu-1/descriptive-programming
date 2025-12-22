@@ -75,6 +75,7 @@ if (!is_dir("/home/{$provision_for_user}/logs")) {
 s_exec("git clone https://github.com/alexstanciu-1/descriptive-programming.git /home/{$provision_for_user}/descriptive-app");
 # make sure we update, in case it's not the first run
 s_exec("git -C /home/{$provision_for_user}/descriptive-app pull");
+s_exec("chown {$provision_for_user}:{$provision_for_user} /home/{$provision_for_user}/descriptive-app -R");
 
 s_exec("chmod +x /home/{$provision_for_user}");
 
