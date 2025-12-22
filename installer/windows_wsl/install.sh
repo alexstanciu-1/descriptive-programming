@@ -16,7 +16,7 @@ wsl --install -d Ubuntu
 wsl -u root -d Ubuntu -- apt update
 wsl -u root -d Ubuntu -- apt install -y git php
 
-wsl -u root -d Ubuntu -- git chown root:root /usr/share/descriptive-app -R
+wsl -u root -d Ubuntu -- chown root:root /usr/share/descriptive-app -R
 wsl -u root -d Ubuntu -- git clone https://github.com/alexstanciu-1/descriptive-programming.git /usr/share/descriptive-app
 
 # make sure we update, in case it's not the first run
