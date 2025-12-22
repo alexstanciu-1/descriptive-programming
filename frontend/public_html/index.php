@@ -9,7 +9,9 @@
 #					also 8.2 sec !!! (wsl v2 !!!)
 
 $install_args = json_decode(file_get_contents("../../../descriptive-app.setup-conf.json"));
-$sync_path = "/mnt" . dirname(dirname($install_args->args[3]));
+$sync_path = trim($install_args->args[3], '"');
+$sync_path = preg_replace_callback("/^(\w+)\\:/uis", function ($m) { return strtolower($m[1]);}, $sync_path);
+$sync_path = preg_replace("/(\\\\)/uis", "/", $sync_path);
 
 var_dump('$sync_path', $sync_path);
 
