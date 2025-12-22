@@ -13,7 +13,7 @@ $sync_path = "/mnt" . dirname(dirname($install_args->args[3]));
 
 var_dump('$sync_path', $sync_path);
 
-$cmd = "find -type f -not -path \"*/.git/*\" -not -path \"*/gens/*\" ".escapeshellarg($sync_path)."/";
+$cmd = "find -type f -not -path \"*/.git/*\" -not -path \"*/gens/*\" ".escapeshellarg($sync_path."/");
 
 var_dump($cmd);
 
