@@ -12,10 +12,10 @@ $install_args = json_decode(file_get_contents("../../../descriptive-app.setup-co
 $sync_path = trim($install_args->args[3], '"');
 $sync_path = preg_replace_callback("/^(\w+)\\:/uis", function ($m) { return strtolower($m[1]);}, $sync_path);
 $sync_path = "/mnt/".preg_replace("/(\\\\)/uis", "/", $sync_path);
+$sync_path = dirname(dirname($sync_path));
+$sync_path = rtrim($sync_path, "/")."/";
 
-var_dump('$sync_path', $sync_path);
-
-$cmd = "time find ".escapeshellarg($sync_path."/")." -type f -not -path \"*/.git/*\" -not -path \"*/gens/*\"";
+$cmd = "time find ".escapeshellarg($sync_path)." -type f -not -path \"*/.git/*\" -not -path \"*/gens/*\"";
 
 var_dump($cmd);
 
