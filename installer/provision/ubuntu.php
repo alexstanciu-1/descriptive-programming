@@ -1,5 +1,7 @@
 <?php
 
+# THIS WILL RUN AS `root` user !!!
+
 # install crontab start crontab
 # start services when ubuntu starts !!!!
 
@@ -9,14 +11,34 @@
  * 
  */
 
+/*
+
+PLAN:
+	descriptive-app | sudoer | - able to run a /etc/sudoers.d/
+
+
+ */
+
 
 echo "provision/ubuntu\n";
 
 $provision_for_user = "descriptive-app";
 
 s_exec("useradd -m " . escapeshellarg($provision_for_user));
+# making descriptive-app a sudoer so it can run privisioning scripts and other stuff
+s_exec("sudo adduser " . escapeshellarg($provision_for_user) . " sudo");
 
 var_dump('$argv', $argv);
+
+$arg_vm_type = trim($argv[1] ?? '');
+$arg_host_user = trim($argv[2] ?? '');
+$arg_host_path = trim($argv[3] ?? '');
+
+var_dump([
+	'$arg_vm_type' => $arg_vm_type,
+	'$arg_host_user' => $arg_host_user,
+	'$arg_host_path' => $arg_host_path,
+]);
 
 # $provision_for_user = trim($argv[1] ?? '');
 # $runned_by = trim($argv[2] ?? '');
