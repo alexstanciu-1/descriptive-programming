@@ -9,8 +9,9 @@
 #					also 8.2 sec !!! (wsl v2 !!!)
 
 $install_args = json_decode(file_get_contents("../../../descriptive-app.setup-conf.json"));
+$sync_path = "/mnt" . dirname(dirname($install_args->args[3]));
 
-var_dump(dirname(dirname($install_args->args[3])));
+var_dump($sync_path, scandir($sync_path));
 exit;
 
 require __DIR__.'/main.tpl';
